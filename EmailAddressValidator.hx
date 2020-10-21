@@ -1,4 +1,4 @@
-//Refer to RFC5388.
+//Refer to RFC 5388.
 class EmailAddressValidator {
 	var forbidChars:{
 		domain:Array<String>,
