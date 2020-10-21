@@ -1,0 +1,13 @@
+-p src
+-m Test
+-lib sneaker
+#--dce full
+
+#--interp
+--each
+-js bin/test/test.js
+--cmd  node bin/test/test.js
+
+#--next
+#-hl bin/test/test.hl
+#--cmd  hl bin/test/test.hl
