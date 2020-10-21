@@ -1,14 +1,23 @@
-//Refer to RFC 5388.
-class EmailAddressValidator {
-	var forbidChars:{
-		domain:Array<String>,
-		local:Array<String>
-	}
+typedef ForbidChars = {
+	?domain:Array<String>,
+	?local:Array<String>
+}
 
-	static public function isEmail(emailAddress:String, forbidChars, ?allowIPDomain:Bool = false):Bool {
+class EmailAddressValidator {
+	static public function isEmail(emailAddress:String, ?forbidChars:ForbidChars, ?allowIPDomain:Bool = true):Bool {
 		// This pattern is very fast. ^^)/
 		// final allowEmail:EReg = ~/[\w-.]+@[\w-.]+/;
 		// return allowEmail.match(emailAddress);
+		if (forbidChars == null)
+			forbidChars = {
+				domain: [],
+				local: []
+			};
+
+		if (forbidChars.domain == null)
+			forbidChars.domain = [];
+		if (forbidChars.local == null)
+			forbidChars.local = [];
 
 		if (emailAddress.lastIndexOf("@") < 0)
 			return false;
@@ -105,7 +114,9 @@ class EmailAddressValidator {
 		return true;
 	}
 
-	static function checkForbidChars(forbidChars:Array<String>, string:String):Bool {
+	static function checkForbidChars(?forbidChars:Array<String>, string:String):Bool {
+		if (forbidChars == null)
+			return true;
 		var splitString = string.split("");
 		for (v in splitString) {
 			for (vv in forbidChars) {
