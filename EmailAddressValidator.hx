@@ -5,7 +5,7 @@ class EmailAddressValidator {
 		local:Array<String>
 	}
 
-	static public function isEmail(emailAddress:String, forbidChars, ?allowIPDomain:Bool = true):Bool {
+	static public function isEmail(emailAddress:String, forbidChars, ?allowIPDomain:Bool = false):Bool {
 		// This pattern is very fast. ^^)/
 		// final allowEmail:EReg = ~/[\w-.]+@[\w-.]+/;
 		// return allowEmail.match(emailAddress);
