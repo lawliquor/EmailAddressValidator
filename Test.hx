@@ -68,21 +68,21 @@ class Test {
 			assert(EmailAddressValidator.isEmail(v, {
 				domain: [],
 				local: []
-			}) == true);
+			},true) == true);
 			trace("case3 " + v + " == true : passed");
 		}
 		for (v in falseIPMock) {
 			assert(EmailAddressValidator.isEmail(v, {
 				domain: [],
 				local: []
-			}) == false);
+			},true) == false);
 			trace("case4 " + v + " == false : passed");
 		}
 		for (v in trueIPMock) {
 			assert(EmailAddressValidator.isEmail(v, {
 				domain: [],
 				local: []
-			}, false) == false);
+			}) == false);
 			trace("case5 " + v + " == false : passed");
 		}
 		for (v in rejectLocalMock) {
