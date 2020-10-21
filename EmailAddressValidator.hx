@@ -108,8 +108,8 @@ class EmailAddressValidator {
 	static function checkForbidChars(forbidChars:Array<String>, string:String):Bool {
 		var splitString = string.split("");
 		for (v in splitString) {
-			for (fc in forbidChars) {
-				if (v == fc)
+			for (vv in forbidChars) {
+				if (v == vv)
 					return false;
 			}
 		}
