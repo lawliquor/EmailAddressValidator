@@ -2,7 +2,6 @@ import sneaker.assertion.Asserter.assert;
 
 class Test {
 	static function main() {
-		// trace(EmailAddressValidator.isEmail('simple@example.com'));
 		assertEmail();
 	}
 
@@ -46,12 +45,9 @@ class Test {
 			'"""@example.org'
 		];
 		var rejectDomainMock:Array<String> = [
-			               'simple@example.com', 'very.common@example.com', 'other.email-with-hyphen@example.com',
-			          'fully-qualified-domain@example.com',
-			'user.name+tag+sorting@example.com',           'x@example.com',  'example-indeed@strange-example.com',
-			               'mailhost!username@example.org',
-			     'user%example.com@example.org',         '" "@example.org',             '"john..doe"@example.org',
-			'disposable.style.email.with+symbol@example.com'
+			'simple@example.com', 'very.common@example.com', 'other.email-with-hyphen@example.com', 'fully-qualified-domain@example.com',
+			'user.name+tag+sorting@example.com', 'x@example.com', 'example-indeed@strange-example.com', 'mailhost!username@example.org',
+			'user%example.com@example.org', '" "@example.org', '"john..doe"@example.org', 'disposable.style.email.with+symbol@example.com'
 		];
 
 		for (v in trueMock) {
@@ -86,6 +82,15 @@ class Test {
 				domain: ["o"]
 			}) == false);
 			trace("case7 " + v + " == false : passed");
+		}
+
+		for (v in trueMock) {
+			assert(SimpleEmailAddressValidator.isEmail(v) == true);
+			trace("case8 " + v + " == true : passed");
+		}
+		for (v in falseMock) {
+			assert(SimpleEmailAddressValidator.isEmail(v) == false);
+			trace("case9 " + v + " == false : passed");
 		}
 	}
 }
