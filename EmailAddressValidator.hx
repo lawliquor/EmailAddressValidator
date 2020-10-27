@@ -13,18 +13,22 @@ class EmailAddressValidator {
 				domain: [],
 				local: []
 			};
-
 		if (forbidChars.domain == null)
 			forbidChars.domain = [];
 		if (forbidChars.local == null)
 			forbidChars.local = [];
-
 		if (emailAddress.lastIndexOf("@") < 0)
 			return false;
-		var domain = StringTools.replace(emailAddress.substr(emailAddress.lastIndexOf("@")), "@", "");
-		var local = emailAddress.substring(0, emailAddress.lastIndexOf("@"));
 		if (emailAddress.length > 254 || emailAddress.length < 1)
 			return false;
+
+		return checkAddress(emailAddress, forbidChars, allowIPDomain);
+	}
+
+	static function checkAddress(emailAddress:String, ?forbidChars:ForbidChars, ?allowIPDomain:Bool):Bool {
+		var domain = StringTools.replace(emailAddress.substr(emailAddress.lastIndexOf("@")), "@", "");
+		var local = emailAddress.substring(0, emailAddress.lastIndexOf("@"));
+
 		if (isDomain(domain, forbidChars.domain, allowIPDomain) == false)
 			return false;
 		if (isLocal(local, forbidChars.local) == false)
