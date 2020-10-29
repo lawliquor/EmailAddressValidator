@@ -4,6 +4,9 @@ typedef ForbidChars = {
 }
 
 class EmailAddressValidator {
+	
+	private function new(){}
+	
 	static public function isEmail(emailAddress:String, ?forbidChars:ForbidChars, ?allowIPDomain:Bool = true):Bool {
 		// This pattern is very fast. ^^)/
 		// final allowEmail:EReg = ~/[\w-.]+@[\w-.]+/;
