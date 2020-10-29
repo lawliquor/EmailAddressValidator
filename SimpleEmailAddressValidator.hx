@@ -1,4 +1,7 @@
 class SimpleEmailAddressValidator {
+	
+	private function new(){}
+	
 	static public function isEmail(emailAddress:String):Bool {
 		if (emailAddress.lastIndexOf("@") < 0)
 			return false;
